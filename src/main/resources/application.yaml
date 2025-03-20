@@ -1,1 +1,31 @@
-spring.application.name=metrics
+server:
+  port: 8081
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          external:
+            issuer-uri: http://localhost:8080/realms/engage-metrics
+        registration:
+          external:
+            provider: external
+            client-id: dev-client-id
+            client-secret: CrRxwVTsngBMM77VBAdowdQiObyMUFQv
+            scope: openid, offline_access, profile
+            authorization-grant-type: authorization_code
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        ddl-auto: update
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/engage-metrics
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
